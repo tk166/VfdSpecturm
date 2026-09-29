@@ -1,0 +1,25 @@
+# 换行统一：仓库里存 LF，Windows 上检出为 CRLF。
+#
+# 为什么必须钉死（不是洁癖，是踩过的坑）：
+#   * tools\build.bat 是 cmd 批处理，**LF 换行会让 cmd 把行拆错**
+#     （症状是 'OM' is not recognized 之类的碎片报错）；
+#   * tools\*.ps1 在无 BOM 时由 PowerShell 5.1 按 ANSI 解码，同样对字节序列敏感
+#     （中文注释可能吞掉紧随其后的一整行）。
+# 钉成 eol=crlf 之后，别人在 Linux/CI 上 clone 也能拿到正确的 CRLF。
+* text=auto
+
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
+*.ps1  text eol=crlf
+
+# 二进制：不做换行转换、不做文本 diff
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.wav   binary
+*.dll   binary
+*.exe   binary
+*.lib   binary
+*.pdb   binary

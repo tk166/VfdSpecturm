@@ -1,0 +1,8 @@
+# VFD Spectrum Analyzer 运行依赖
+# 安装(建议用清华源或直连 pypi):
+#   pip install -r requirements.txt -i https://pypi.org/simple
+numpy>=1.26
+soundcard>=0.4.3
+dearpygui>=2.0
+# 可选: 仅调试/离线预览用
+# pillow>=10.0
